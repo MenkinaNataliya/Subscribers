@@ -1,0 +1,76 @@
+﻿@{
+    Layout = null;
+}
+
+@model List<WebApplication.Models.News>
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <title>Новости</title>
+
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
+
+    <script src="//netdna.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+</head>
+<body style="margin: 20px;background: dimgrey">
+
+    <style>
+        .row {
+            margin: 0px;
+        }
+    </style>
+
+    <div class="row placeholders">
+        <div class="col-md-8">
+
+            @foreach (var post in Model)
+            {
+                <div class="col-xs-6 col-sm-6 col-md-6 placeholder" style="overflow: hidden; padding: 5px">
+                    <div style="background: peachpuff; border-radius: 15px; padding: 5px;">
+                        <img class="img-responsive" alt="200x200" src=@post.photo>
+                       
+                        <br>
+                        @post.text
+                        <div class="row">
+                            <div class="col-md-4">Комментарии - @post.comments</div>
+                            <div class="col-md-4">Репосты - @post.reposts</div>
+                            <div class="col-md-4">лайки - @post.likes</div>
+                        </div>
+                    </div>
+
+                </div>
+            }
+        </div>
+        <div class="col-md-4">
+            <h1>Выберите сортировку</h1>
+
+            <form method="post" action="~/Home/GetUserNews">
+                <div class="radio">
+                    <label>
+                        <input type="radio" name="optionsRadios" id="optionsRadios1" value="likes" checked>
+                        По лайкам
+                    </label>
+                </div>
+                <div class="radio">
+                    <label>
+                        <input type="radio" name="optionsRadios" id="optionsRadios2" value="reposts">
+                        По репостам
+                    </label>
+                </div>
+                <div class="radio">
+                    <label>
+                        <input type="radio" name="optionsRadios" id="optionsRadios3" value="comments">
+                        По комментариям
+                    </label>
+                </div>
+                <input type="submit" value="Отправить" />
+            </form>
+        </div>
+
+    </div>
+</body>
+</html>

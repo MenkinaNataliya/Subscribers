@@ -20,6 +20,17 @@ namespace VkApi
     {
         public int count;
     }
+    public struct Photo
+    {
+        public string photo_130;
+    }
+
+    public struct Attachments
+    {
+        public string type;
+        public Photo photo;
+    }
+
     public class VkNews
     {
         public int owner_id;
@@ -30,6 +41,9 @@ namespace VkApi
         public Reposts reposts;
         public double date;
         public string text;
+       // public VkNews copy_history;
+        public List<Attachments> attachments;
+
 
     }
 }

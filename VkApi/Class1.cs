@@ -13,10 +13,11 @@ namespace VkApi
 
         public static List<VkNews> GetVkNewsByIdFriends(long id)
         {
+            return new List<VkNews>();
             //news = Service.ParseNews(Get.VkNews(id));
             //return SortingNews(news);
 
-            return Service.ParseNews(Get.VkNews(id));
+            //            return Service.ParseNews(Get.VkNews(id));
         }
 
 

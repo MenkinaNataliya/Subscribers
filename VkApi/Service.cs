@@ -11,8 +11,9 @@ namespace VkApi
 {
     public class Service
     {
-        public static List<VkNews> ParseNews(string json)
+        public static List<VkNews> ParseNews(long id)
         {
+            string json = Get.VkNews(id);
             if (json == null) return new List<VkNews>();
             var jss = new JavaScriptSerializer();
 
@@ -23,6 +24,7 @@ namespace VkApi
 
             foreach (var dop in ListObj)
             {
+                
                 var post = jss.Deserialize<VkNews>(dop.ToString());
                 collection.Add(post);
             }

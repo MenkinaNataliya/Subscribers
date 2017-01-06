@@ -10,9 +10,6 @@ namespace Db
     public class Service
     {
         public static DbModel db = new DbModel();
-
-
-
         public static void FillingDatabase(Member user)
         {
             using (DbModel db = new DbModel())
@@ -41,9 +38,9 @@ namespace Db
             }
         }
 
-        public static void UpdateDb(Member user, List<Member> friends)
+       /* public static void UpdateDb(Member user, List<Member> friends)
         {
-           /* using (DbModel db = new DbModel())
+            using (DbModel db = new DbModel())
             {
                 Member dbMember = db.Members.Find(user.Uid);
                 if (dbMember == null) dbMember = db.Members.Add(user);
@@ -63,9 +60,9 @@ namespace Db
 
                 }
                 db.SaveChanges();
-            }*/
+            }
         }
-
+        */
         public static List<Member> GetMembers(string namegroup)
         {
             using (var db = new DbModel())
