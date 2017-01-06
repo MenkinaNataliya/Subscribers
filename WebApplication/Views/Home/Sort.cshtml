@@ -32,7 +32,7 @@
                 <div class="col-xs-6 col-sm-6 col-md-6 placeholder" style="overflow: hidden; padding: 5px">
                     <div style="background: peachpuff; border-radius: 15px; padding: 5px;">
                         <img class="img-responsive" alt="200x200" src=@post.photo>
-
+                       
                         <br>
                         @post.text
                         <div class="row">
@@ -48,33 +48,10 @@
         <div class="col-md-4">
             <h1>Выберите сортировку</h1>
 
-            <h4>@Html.ActionLink("По лайкам", "Sort", new { typeSort = "likes", id = ViewBag.id })</h4>
-            <h4>@Html.ActionLink("По репостам", "Sort", new { typeSort = "reposts", news = @Model })</h4>
-            <h4>@Html.ActionLink("По комментариям", "Sort", new { typeSort = "comments", news = @Model })</h4>
+            <h4>@Html.ActionLink("По лайкам", "Sort", new { typeSort = "likes",  news  = Model })</h4>
+            <h4>@Html.ActionLink("По репостам", "Sort", new { typeSort = "reposts", news = Model })</h4>
+            <h4>@Html.ActionLink("По комментариям", "Sort", new { typeSort = "comments",   news = Model })</h4>
 
-
-            <!-- <form method="post" action="~/Home/GetUserNews">
-                 <label></label>
-                 <div class="radio">
-                     <label>
-                         <input type="radio" name="optionsRadios" id="optionsRadios1" value="likes" checked>
-                         По лайкам
-                     </label>
-                 </div>
-                 <div class="radio">
-                     <label>
-                         <input type="radio" name="optionsRadios" id="optionsRadios2" value="reposts">
-                         По репостам
-                     </label>
-                 </div>
-                 <div class="radio">
-                     <label>
-                         <input type="radio" name="optionsRadios" id="optionsRadios3" value="comments">
-                         По комментариям
-                     </label>
-                 </div>
-                 <input type="submit" value="Отправить" />
-             </form>-->
         </div>
 
     </div>

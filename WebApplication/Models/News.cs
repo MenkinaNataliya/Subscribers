@@ -16,5 +16,7 @@ namespace WebApplication.Models
         public double date { get; set; }
         public string text { get; set; }
         public string photo { get; set; }
+
+       
     }
 }
