@@ -1,0 +1,141 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{BE3013D7-E13E-45A2-ACD7-E2DF96269A64}</ProjectGuid>
+    <OutputType>Exe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Db</RootNamespace>
+    <AssemblyName>Db</AssemblyName>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="DbModel.cs" />
+    <Compile Include="Member.cs" />
+    <Compile Include="Migrations\201612191520265_addTable.cs" />
+    <Compile Include="Migrations\201612191520265_addTable.Designer.cs">
+      <DependentUpon>201612191520265_addTable.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201701060849179_hasManyWithMany].cs" />
+    <Compile Include="Migrations\201701060849179_hasManyWithMany].Designer.cs">
+      <DependentUpon>201701060849179_hasManyWithMany].cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201701060900076_hasManyWithManytwo.cs" />
+    <Compile Include="Migrations\201701060900076_hasManyWithManytwo.Designer.cs">
+      <DependentUpon>201701060900076_hasManyWithManytwo.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201701060932315_FlagIItGroup.cs" />
+    <Compile Include="Migrations\201701060932315_FlagIItGroup.Designer.cs">
+      <DependentUpon>201701060932315_FlagIItGroup.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201701060939046_AddTableGroup.cs" />
+    <Compile Include="Migrations\201701060939046_AddTableGroup.Designer.cs">
+      <DependentUpon>201701060939046_AddTableGroup.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201701060952291_SvazGroupsAndMember.cs" />
+    <Compile Include="Migrations\201701060952291_SvazGroupsAndMember.Designer.cs">
+      <DependentUpon>201701060952291_SvazGroupsAndMember.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201701060959593_SvazGroupsAndMember1.cs" />
+    <Compile Include="Migrations\201701060959593_SvazGroupsAndMember1.Designer.cs">
+      <DependentUpon>201701060959593_SvazGroupsAndMember1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201701061016069_SvazGroupsAndMember2.cs" />
+    <Compile Include="Migrations\201701061016069_SvazGroupsAndMember2.Designer.cs">
+      <DependentUpon>201701061016069_SvazGroupsAndMember2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201701061020199_SvazGroupsAndMember3.cs" />
+    <Compile Include="Migrations\201701061020199_SvazGroupsAndMember3.Designer.cs">
+      <DependentUpon>201701061020199_SvazGroupsAndMember3.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Service.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201612191520265_addTable.resx">
+      <DependentUpon>201612191520265_addTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201701060849179_hasManyWithMany].resx">
+      <DependentUpon>201701060849179_hasManyWithMany].cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201701060900076_hasManyWithManytwo.resx">
+      <DependentUpon>201701060900076_hasManyWithManytwo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201701060932315_FlagIItGroup.resx">
+      <DependentUpon>201701060932315_FlagIItGroup.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201701060939046_AddTableGroup.resx">
+      <DependentUpon>201701060939046_AddTableGroup.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201701060952291_SvazGroupsAndMember.resx">
+      <DependentUpon>201701060952291_SvazGroupsAndMember.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201701060959593_SvazGroupsAndMember1.resx">
+      <DependentUpon>201701060959593_SvazGroupsAndMember1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201701061016069_SvazGroupsAndMember2.resx">
+      <DependentUpon>201701061016069_SvazGroupsAndMember2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201701061020199_SvazGroupsAndMember3.resx">
+      <DependentUpon>201701061020199_SvazGroupsAndMember3.cs</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

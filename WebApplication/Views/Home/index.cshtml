@@ -1,0 +1,40 @@
+﻿@{
+    Layout = null;
+}
+@model List<WebApplication.Models.User>
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Подписчики группы ИИТ</title>
+</head>
+<body style="margin:20px">
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
+
+    <script src="//netdna.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+
+    <div style="overflow: hidden">
+        <div class="row placeholders">
+            @foreach (var user in Model)
+            {
+                <style>
+                    .img-responsive {
+                        height: 200px;
+                        width: 200px;
+                        overflow: hidden;
+                    }
+                </style>
+
+                <div class="col-xs-2 col-sm-1 col-md-3 placeholder">
+                    <img class="img-responsive img-circle" alt="200x200" src=@user.Photo>
+                    <h4>@Html.ActionLink(user.FirstName + " " + user.SecondName, "GetUserNews", new { userId = user.Uid })</h4>
+                </div>
+            }
+        </div>
+    </div>
+</body>
+</html>

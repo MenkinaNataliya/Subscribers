@@ -1,0 +1,7 @@
+E:\учеба\Семестровое\WebApplication\VkApi\bin\Debug\VkApi.dll
+E:\учеба\Семестровое\WebApplication\VkApi\bin\Debug\VkApi.pdb
+E:\учеба\Семестровое\WebApplication\VkApi\bin\Debug\Newtonsoft.Json.dll
+E:\учеба\Семестровое\WebApplication\VkApi\bin\Debug\Newtonsoft.Json.xml
+E:\учеба\Семестровое\WebApplication\VkApi\obj\Debug\VkApi.csprojResolveAssemblyReference.cache
+E:\учеба\Семестровое\WebApplication\VkApi\obj\Debug\VkApi.dll
+E:\учеба\Семестровое\WebApplication\VkApi\obj\Debug\VkApi.pdb
