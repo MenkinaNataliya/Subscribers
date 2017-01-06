@@ -13,6 +13,7 @@ namespace WebApplication.Models
         public int likes { get; set; }
         public int comments { get; set; }
         public int reposts { get; set; }
+        public int shares { get; set; }
         public double date { get; set; }
         public string text { get; set; }
         public string photo { get; set; }

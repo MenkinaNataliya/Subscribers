@@ -25,10 +25,16 @@ namespace VkApi
         public string photo_130;
     }
 
+    public struct Link
+    {
+        public string url;
+    }
+
     public struct Attachments
     {
         public string type;
         public Photo photo;
+        public Link link; 
     }
 
     public class VkNews

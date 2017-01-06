@@ -20,6 +20,10 @@ namespace AppServer
     {
         public int count;
     }
+    public struct Share
+    {
+        public int share_count;
+    }
     public class News
     {
         public int owner_id;
@@ -31,6 +35,7 @@ namespace AppServer
         public double date;
         public string text;
         public string photo;
+        public Share share;
 
         public void SortByComments()
         {

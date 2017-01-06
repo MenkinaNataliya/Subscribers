@@ -36,9 +36,10 @@
                         <br>
                         @post.text
                         <div class="row">
-                            <div class="col-md-4">Комментарии - @post.comments</div>
-                            <div class="col-md-4">Репосты - @post.reposts</div>
-                            <div class="col-md-4">лайки - @post.likes</div>
+                            <div class="col-md-3">Комментарии - @post.comments</div>
+                            <div class="col-md-3">Репосты - @post.reposts</div>
+                            <div class="col-md-3">Лайки - @post.likes</div>
+                            <div class="col-md-3">Шеры - @post.shares</div>
                         </div>
                     </div>
 
@@ -51,6 +52,7 @@
             <h4>@Html.ActionLink("По лайкам", "Sort", new { typeSort = "likes",  news  = Model })</h4>
             <h4>@Html.ActionLink("По репостам", "Sort", new { typeSort = "reposts", news = Model })</h4>
             <h4>@Html.ActionLink("По комментариям", "Sort", new { typeSort = "comments",   news = Model })</h4>
+            <h4>@Html.ActionLink("По шерам", "Sort", new { typeSort = "shares", news = @Model })</h4>
 
         </div>
 
