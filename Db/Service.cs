@@ -80,28 +80,5 @@ namespace Db
             }
         }
 
-       /* public static User GetFriendById(long id)
-        {
-            using (var db = new DbModel())
-                return db.Users.Find(id);
-        }
-
-        public static List<User> GetFriends(long member)
-        {
-            using (var db = new DbModel())
-            {
-                // var memid = GetUserById((int)member);
-                var users = db.Friends.Where(x => x.Member == member).ToList();
-                List<User> friends = new List<User>();
-                foreach (var user in users)
-                {
-                    friends.Add(GetFriendById(user.User));
-                }
-                return friends;
-            }
-
-            // return db.Users.Where(x => x.Friends.Any(f => f.Uid == member.Uid)).ToList();
-
-        }*/
     }
 }

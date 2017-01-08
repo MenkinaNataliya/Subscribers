@@ -7,9 +7,6 @@ namespace WebApplication.Models
 {
     public class News
     {
-        public int owner_id { get; set; }
-        public int from_id { get; set; }
-        public int id { get; set; }
         public int likes { get; set; }
         public int comments { get; set; }
         public double LikesPriority { get; set; }
@@ -17,7 +14,6 @@ namespace WebApplication.Models
         public double RepostsPriority { get; set; }
         public int reposts { get; set; }
         public int shares { get; set; }
-        public double date { get; set; }
         public string text { get; set; }
         public string photo { get; set; }
 
