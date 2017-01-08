@@ -17,39 +17,19 @@ namespace AppServer
     {
         public static List<User> GetMembers( string group)
         {
-            //UpdateDb(null);
-            // return Translate.DbUsersInUsers(Service.GetMembers());
             Mapper.Initialize(cfg => cfg.CreateMap<Member, User>());
-            var tmp = Mapper.Map<List<User>>(Service.GetMembers(group));
-            return tmp;
+            return Mapper.Map<List<User>>(Service.GetMembers(group));
         }
 
         public static List<News> GetNews(long id)
         {
-            //Mapper.Initialize(cfg => cfg.CreateMap<VkApi.VkNews, News>());
-            //var tmp = Mapper.Map<List<News>>(VkApi.Service.ParseNews(id));
-            return VkApi.Service.ParseNews(id).ConvertAll(new Converter<VkApi.VkNews, News>(VkNewsToServerNews));
+            var news  = VkApi.Service.ParseNews(id).ConvertAll(new Converter<VkApi.VkNews, News>(VkNewsToServerNews));
+            return NormalizedUserPosts(news, Service.CountNumberFriends(id));
+           
         }
 
         private static News VkNewsToServerNews(VkApi.VkNews news)
         {
-            int countShare = 0;
-            if (news.attachments != null && news.attachments[0].link.url != null)
-            {
-                var json = GetJson(news.attachments[0].link.url);
-
-                if (json != null)
-                {
-                    var jss = new JavaScriptSerializer();
-
-                    var obj = JObject.Parse(json);
-
-
-                    var tm = jss.Deserialize<Share>(obj.ToString());
-                    countShare = tm.share_count;
-                }
-                
-            }
 
             return new News
             {
@@ -58,10 +38,50 @@ namespace AppServer
                 reposts = new Reposts { count = news.reposts.count },
                 text = news.text,
                 photo = (news.attachments == null) ? "" : news.attachments[0].photo.photo_130,
-                share = new Share { share_count = countShare }
-               // link = (news.attachments == null) ? "" : ((news.attachments[0].link.url==null) ? "": news.attachments[0].link.url)
+                share = new Share { share_count = ((news.attachments == null) ? 0: CountShare(news.attachments[0]) )}
+                //LikesPriority = GetNormalizedUserPosts(news)
             };
 
+        }
+
+        private static int CountShare(VkApi.Attachments attachments)
+        {
+            int countShare = 0;
+            if (attachments.link.url != null)
+            {
+                var json = GetJson(attachments.link.url);
+                if (json != null)
+                {
+                    var jss = new JavaScriptSerializer();
+                    var obj = JObject.Parse(json);
+                    var tm = jss.Deserialize<Share>(obj.ToString());
+                    countShare = tm.share_count;
+                }
+            }
+            return countShare;
+        }
+
+
+        private static List<News> NormalizedUserPosts(List<News> news, int countFriends)
+        {
+            int likesAmount = 0;
+            int commentsAmount = 0;
+            int repostsAmount = 0;
+            foreach (var item in news)
+            {
+                likesAmount += item.likes.count;
+                commentsAmount += item.comments.count;
+                repostsAmount += item.reposts.count;
+            }
+
+            foreach (var item in news)
+            {
+                item.LikesPriority = item.likes.count / ((double)likesAmount / news.Count);
+                item.CommentsPriority = item.comments.count / ((double)commentsAmount / news.Count);
+                item.RepostsPriority = item.reposts.count / ((double)repostsAmount / news.Count);
+            }
+
+            return news;
         }
 
         private static string RemoveRoot(string json)

@@ -17,25 +17,17 @@ namespace WebApplication.Controllers
         }
 
         [HttpGet]
-        public ActionResult GetUserNews(int userId, string type = "likes")
+        public ActionResult GetUserNews( string typeSort, int userId)
         {
             
             var news = AppServer.Server.GetNews(userId)
                 .ConvertAll(new Converter<AppServer.News, Models.News>(ServerNewsToWebNews));
             ViewBag.news = news;
             ViewBag.id = userId;
-            return View( news);
-         }
-                   
-        [HttpGet]
-        public ActionResult Sort(string typeSort , int id)
-        {
-            var news = AppServer.Server.GetNews(id)
-                .ConvertAll(new Converter<AppServer.News, Models.News>(ServerNewsToWebNews));
-            
             return View(Sorting(typeSort, news));
-        }
-        public static List<Models.News> Sorting(string typeSort, List<Models.News> news)
+         }
+        
+        private static List<Models.News> Sorting(string typeSort, List<Models.News> news)
         {
             if (typeSort == "comments")
             {
@@ -59,21 +51,22 @@ namespace WebApplication.Controllers
                 news.Sort(delegate (Models.News ne1, Models.News ne2)
                 { return ne2.shares.CompareTo(ne1.shares); });
             }
+            else if (typeSort == "normalizationByLikes")
+            {
+                news.Sort(delegate (Models.News ne1, Models.News ne2)
+                { return ne1.LikesPriority.CompareTo(ne2.LikesPriority); });
+            }
+            else if (typeSort == "normalizationByComments")
+            {
+                news.Sort(delegate (Models.News ne1, Models.News ne2)
+                { return ne1.CommentsPriority.CompareTo(ne2.CommentsPriority); });
+            }
+            else if (typeSort == "normalizationByReposts")
+            {
+                news.Sort(delegate (Models.News ne1, Models.News ne2)
+                { return ne1.RepostsPriority.CompareTo(ne2.RepostsPriority); });
+            }
             return news;
-        }
-
-
-        [HttpGet]
-        public ActionResult News(List<Models.News> news)
-        {
-            if(news ==null) return RedirectToAction("Error");
-            return View(news);
-        }
-        [HttpGet]
-        public ActionResult Error()
-        {
-           
-            return View();
         }
 
         private Models.User ServerUserToWebUser(AppServer.User user)
@@ -97,8 +90,11 @@ namespace WebApplication.Controllers
                 reposts = news.reposts.count,
                 text = news.text,
                 photo = news.photo,
-                shares = news.share.share_count
-             };
+                shares = news.share.share_count,
+                LikesPriority= news.LikesPriority,
+                CommentsPriority = news.CommentsPriority,
+                RepostsPriority = news.RepostsPriority
+            };
 
         }
     }

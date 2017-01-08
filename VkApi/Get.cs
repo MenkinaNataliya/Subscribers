@@ -13,7 +13,7 @@ namespace VkApi
     {
         public static string Members(string group)
         {
-            return GetJson("groups.getMembers?group_id="+group+"&count=15");
+            return GetJson("groups.getMembers?group_id="+group+ "&fields=1,photo_200_orig,deactivated");
         }
         public static string UsersById(string ids)
         {
@@ -23,12 +23,12 @@ namespace VkApi
 
         public static string Friends(long id)
         {
-            return GetJson("friends.get?user_id=" + id + "&count=10&offset=0");
+            return GetJson("friends.get?user_id=" + id + "&fields=1");
         }
 
         public static string VkNews(long id)
         {
-            return GetJson("wall.get?owner_id=" + id + "&filter=owner&count=10&offset=0");
+            return GetJson("wall.get?owner_id=" + id + "&filter=owner&count=50&offset=0");
         }
 
         private static string RemoveRoot(string json)

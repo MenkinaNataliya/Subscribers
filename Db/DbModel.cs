@@ -29,6 +29,7 @@
             modelBuilder.Entity<Member>()
                  .HasMany(c => c.Friends)
                  .WithMany()
+                 
                  .Map(m =>
                  {
                      // Ссылка на промежуточную таблицу
@@ -38,6 +39,7 @@
                      m.MapLeftKey("MemberId");
                      m.MapRightKey("FriendId");
                  });
+                 
 
             modelBuilder.Entity<Group>()
                 .HasMany(c => c.Subscribers)

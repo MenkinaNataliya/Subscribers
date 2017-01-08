@@ -31,7 +31,7 @@
 
                 <div class="col-xs-2 col-sm-1 col-md-3 placeholder">
                     <img class="img-responsive img-circle" alt="200x200" src=@user.Photo>
-                    <h4>@Html.ActionLink(user.FirstName + " " + user.SecondName, "GetUserNews", new { userId = user.Uid })</h4>
+                    <h4>@Html.ActionLink(user.FirstName + " " + user.SecondName, "GetUserNews", new { typeSort = "likes", userId = user.Uid })</h4>
                 </div>
             }
         </div>

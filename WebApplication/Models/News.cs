@@ -12,6 +12,9 @@ namespace WebApplication.Models
         public int id { get; set; }
         public int likes { get; set; }
         public int comments { get; set; }
+        public double LikesPriority { get; set; }
+        public double CommentsPriority { get; set; }
+        public double RepostsPriority { get; set; }
         public int reposts { get; set; }
         public int shares { get; set; }
         public double date { get; set; }

@@ -25,7 +25,7 @@
     </style>
 
     <div class="row placeholders">
-        <div class="col-md-8">
+        <div class="col-md-10">
 
             @foreach (var post in Model)
             {
@@ -46,13 +46,18 @@
                 </div>
             }
         </div>
-        <div class="col-md-4">
+        <div class="col-md-2">
             <h1>Выберите сортировку</h1>
 
-            <h4>@Html.ActionLink("По лайкам", "Sort", new { typeSort = "likes", id = ViewBag.id })</h4>
-            <h4>@Html.ActionLink("По репостам", "Sort", new { typeSort = "reposts", id = ViewBag.id })</h4>
-            <h4>@Html.ActionLink("По комментариям", "Sort", new { typeSort = "comments", id = ViewBag.id })</h4>
-            <h4>@Html.ActionLink("По шерам", "Sort", new { typeSort = "shares", id = ViewBag.id })</h4>
+            <h4>@Html.ActionLink("По лайкам", "GetUserNews", new { typeSort = "likes", userId = ViewBag.id })</h4>
+            <h4>@Html.ActionLink("По репостам", "GetUserNews", new { typeSort = "reposts", userId = ViewBag.id })</h4>
+            <h4>@Html.ActionLink("По комментариям", "GetUserNews", new { typeSort = "comments", userId = ViewBag.id })</h4>
+            <h4>@Html.ActionLink("По шерам", "GetUserNews", new { typeSort = "shares", userId = ViewBag.id })</h4>
+
+            <br />
+            <h4>@Html.ActionLink("Нормализация по лайкам", "GetUserNews", new { typeSort = "normalizationByLikes", userId = ViewBag.id })</h4>
+            <h4>@Html.ActionLink("Нормализация по комментариям", "GetUserNews", new { typeSort = "normalizationByComments", userId = ViewBag.id })</h4>
+            <h4>@Html.ActionLink("Нормализация по репостам", "GetUserNews", new { typeSort = "normalizationByReposts", userId = ViewBag.id })</h4>
         </div>
 
     </div>

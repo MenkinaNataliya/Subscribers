@@ -10,81 +10,76 @@ namespace Db
     public class Service
     {
         public static DbModel db = new DbModel();
+
+
+        public static int CountNumberFriends(long id)
+        {
+            using (DbModel db = new DbModel())
+            {
+                var user = db.Members.Find(id);
+               return  user.Friends.Count();
+            }
+        }
+        public static void CleanDB()
+        {
+            using (DbModel db = new DbModel())
+            {
+                db.Database.Delete();
+                
+                db.SaveChanges();
+            }
+                
+        }
+        public static void StartDB()
+        {
+            using (DbModel db = new DbModel())
+            {
+                db.Groups.Add(new Group { Name = "csu_iit", Uid = "csu_iit" });
+                db.SaveChanges();
+            }
+        }
+
         public static void FillingDatabase(Member user)
         {
             using (DbModel db = new DbModel())
             {
-                var friends = user.Friends;
-                user.Friends = new List<Member>();
-                db.Members.AddOrUpdate(user);
-                db.SaveChanges();
-                Member dbMember = db.Members.Find(user.Uid);
-
-                foreach (var fr in friends)
+                //var tmp = db.Groups.ToList();
+                if (user.Deactivated != "deleted")
                 {
-                    db.Members.AddOrUpdate(fr);
-                    Member friend = db.Members.Find(fr.Uid);
-                   
-                    dbMember.Friends.Add(friend);
+                    var friends = user.Friends;
+                    user.Friends = new List<Member>();
+                    db.Members.Add(user);
                     db.SaveChanges();
-                   
-                }
-                db.SaveChanges();
+                    Member dbMember = db.Members.Find(user.Uid);
 
-                var group = db.Groups.Where(x => x.Name == "csu_iit").First();
-                group.Subscribers.Add(dbMember);
-                db.SaveChanges();
-
-            }
-        }
-
-       /* public static void UpdateDb(Member user, List<Member> friends)
-        {
-            using (DbModel db = new DbModel())
-            {
-                Member dbMember = db.Members.Find(user.Uid);
-                if (dbMember == null) dbMember = db.Members.Add(user);
-                foreach (var friend in friends)
-                {
-                    Member dbUser = db.Users.Find(friend.Uid);
-                    if (dbUser == null) dbUser = db.Users.Add(friend);
-                    //var dop = ;
-                    var list = db.Friends.Where(x => x.Member == dbMember.Uid).Where(x => x.User == dbUser.Uid).ToList();
-
-                    if (list.Count == 0)
+                    foreach (var fr in friends)
                     {
-                        MemberFriend memFriend = new MemberFriend { Member = dbMember.Uid, User = dbUser.Uid };
-                        db.Friends.Add(memFriend);
+                        db.Members.Add(fr);
+                        Member friend = db.Members.Find(fr.Uid);
+
+                        dbMember.Friends.Add(friend);
+                        db.SaveChanges();
+
                     }
+                    db.SaveChanges();
 
-
+                    var group = db.Groups.Where(x => x.Name == "csu_iit").FirstOrDefault();
+                    group.Subscribers.Add(dbMember);
+                    db.SaveChanges();
                 }
-                db.SaveChanges();
             }
         }
-        */
+
         public static List<Member> GetMembers(string namegroup)
         {
             using (var db = new DbModel())
             {
                 var group = db.Groups.Include("Subscribers")
                                     .Where(x => x.Name == namegroup).First();
-                var ids =  group.Subscribers.ToList();
-                return ids;
-                var mem = new List<Member>();
-                foreach(var id in ids)
-                {
-                    mem.Add(db.Members.Find(id));
-                }
-                return mem;
+                return group.Subscribers.ToList();
             }
         }
 
-        public static Member GetUserById(int id)
-        {
-            using (var db = new DbModel())
-                return db.Members.Find(id);
-        }
        /* public static User GetFriendById(long id)
         {
             using (var db = new DbModel())

@@ -11,8 +11,9 @@ namespace Server
     {
         static void Main(string[] args)
         {
-           // Db.Service.CleanDataBase();
-
+            // Db.Service.CleanDataBase();
+            Db.Service.CleanDB();
+            Db.Service.StartDB();
             var vkUsr = VkApi.Service.ParseUsers("csu_iit");
             //Mapper.Initialize(cfg => cfg.CreateMap<VkApi.VkUser, Db.Member>());
             //var dbUsr = Mapper.Map<List<Db.Member>>(vkUsr);

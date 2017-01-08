@@ -32,6 +32,9 @@ namespace AppServer
         public Likes likes;
         public Comments comments;
         public Reposts reposts;
+        public double LikesPriority;
+        public double CommentsPriority;
+        public double RepostsPriority;
         public double date;
         public string text;
         public string photo;
