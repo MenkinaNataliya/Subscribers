@@ -17,14 +17,6 @@ namespace Db
                 return db.Members.Find(id);
         }
 
-        public static int CountNumberFriends(long id)
-        {
-            using (DbModel db = new DbModel())
-            {
-                var user = db.Members.Find(id);
-                return  user.Friends.Count();
-            }
-        }
         public static void CleanDB()
         {
             using (DbModel db = new DbModel())

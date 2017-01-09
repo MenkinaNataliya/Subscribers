@@ -9,15 +9,16 @@ namespace WebApplication.Models
     {
         public int likes { get; set; }
         public int comments { get; set; }
-        public double LikesPriority { get; set; }
-        public double CommentsPriority { get; set; }
-        public double RepostsPriority { get; set; }
+      
         public int reposts { get; set; }
         public int shares { get; set; }
         public string text { get; set; }
         public List<Attachments> attachments { get; set; }
 
-       
+        public double GetPrioritet (double coef)
+        {
+            return (comments + likes + reposts) / coef;
+        }
     }
 
     public struct Attachments

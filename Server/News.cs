@@ -6,19 +6,31 @@ using System.Threading.Tasks;
 
 namespace AppServer
 {
-    public struct Likes
+    public class Likes
     {
         public int count;
+        public Likes(int count=0)
+        {
+            this.count = count;
+        }
     }
 
     public struct Comments
     {
         public int count;
+        public Comments(int count = 0)
+        {
+            this.count = count;
+        }
     }
 
     public struct Reposts
     {
         public int count;
+        public Reposts(int count = 0)
+        {
+            this.count = count;
+        }
     }
     public struct Share
     {
@@ -48,12 +60,14 @@ namespace AppServer
         public Likes likes;
         public Comments comments;
         public Reposts reposts;
-        public double LikesPriority;
-        public double CommentsPriority;
-        public double RepostsPriority;
+        //public double priority;
         public string text;
         public List<Attachments> attachments;
         //public string photo;
         public Share share;
+        public  virtual  double GetPrioritet(double koef)
+        {
+            return (likes.count + comments.count + reposts.count) / koef;
+        }
     }
 }

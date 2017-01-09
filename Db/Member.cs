@@ -30,6 +30,8 @@ namespace Db
         public string Photo { get; set; }
         public List<Member> Friends { get; set; }
 
+       
+
         public Member()
         {
             Friends = new List<Member>();

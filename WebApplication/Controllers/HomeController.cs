@@ -53,22 +53,24 @@ namespace WebApplication.Controllers
                 news.Sort(delegate (Models.News ne1, Models.News ne2)
                 { return ne2.shares.CompareTo(ne1.shares); });
             }
-            else if (typeSort == "normalizationByLikes")
+            else if (typeSort == "normalization")
             {
+                var coefficient = AppServer.Server.CalculateCoefficient(news.ConvertAll(new Converter<Models.News, News>(ModelsNewsToNews)));
                 news.Sort(delegate (Models.News ne1, Models.News ne2)
-                { return ne1.LikesPriority.CompareTo(ne2.LikesPriority); });
+                { return ne2.GetPrioritet(coefficient).CompareTo(ne1.GetPrioritet(coefficient)); });
             }
-            else if (typeSort == "normalizationByComments")
-            {
-                news.Sort(delegate (Models.News ne1, Models.News ne2)
-                { return ne1.CommentsPriority.CompareTo(ne2.CommentsPriority); });
-            }
-            else if (typeSort == "normalizationByReposts")
-            {
-                news.Sort(delegate (Models.News ne1, Models.News ne2)
-                { return ne1.RepostsPriority.CompareTo(ne2.RepostsPriority); });
-            }
+           
             return news;
+        }
+
+        private static News ModelsNewsToNews(Models.News news)
+        {
+             return new News
+                {
+                    likes = new Likes { count = news.likes },
+                    comments = new Comments { count = news.comments },
+                    reposts = new Reposts { count = news.reposts }
+                };
         }
 
         private Models.User ServerUserToWebUser(AppServer.User user)
@@ -93,9 +95,7 @@ namespace WebApplication.Controllers
                 text = news.text,
                 attachments = news.attachments.Count == 0 ? new List<Models.Attachments>() : news.attachments.ConvertAll(new Converter<Attachments, Models.Attachments>(AttachmentToModelAttachment)),
                 shares = news.share.share_count,
-                LikesPriority= news.LikesPriority,
-                CommentsPriority = news.CommentsPriority,
-                RepostsPriority = news.RepostsPriority
+               // priority= news.priority
             };
 
         }
