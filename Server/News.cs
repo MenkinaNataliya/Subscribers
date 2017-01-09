@@ -24,6 +24,22 @@ namespace AppServer
     {
         public int share_count;
     }
+    public struct Photo
+    {
+        public string photo_130;
+    }
+
+    public struct Link
+    {
+        public string url;
+    }
+    public struct Attachments
+    {
+        public string type;
+        public string photo;
+        public string link;
+        public string text;
+    }
     public class News
     {
         public int owner_id;
@@ -35,18 +51,9 @@ namespace AppServer
         public double LikesPriority;
         public double CommentsPriority;
         public double RepostsPriority;
-        public double date;
         public string text;
-        public string photo;
+        public List<Attachments> attachments;
+        //public string photo;
         public Share share;
-
-        public void SortByComments()
-        {
-        }
-
-        public void AddNewsFriend(long id)
-        {
-
-        }
     }
 }

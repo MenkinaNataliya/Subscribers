@@ -23,39 +23,34 @@ namespace AppServer
 
         public static List<News> GetNews(long id)
         {
-            var news  = VkApi.Service.ParseNews(id).ConvertAll(new Converter<VkApi.VkNews, News>(VkNewsToServerNews));
+            var news  = VkApi.Service.ParseNews(id).ConvertAll(new Converter<VkApi.VkNews, News>(Translate.VkNewsToServerNews));
             return NormalizedUserPosts(news, Service.CountNumberFriends(id));
            
         }
 
-        private static News VkNewsToServerNews(VkApi.VkNews news)
+        public static string GetNameById(int id)
         {
-
-            return new News
-            {
-                likes = new Likes { count = news.likes.count },
-                comments = new Comments { count = news.comments.count },
-                reposts = new Reposts { count = news.reposts.count },
-                text = news.text,
-                photo = (news.attachments == null) ? "" : news.attachments[0].photo.photo_130,
-                share = new Share { share_count = ((news.attachments == null) ? 0: CountShare(news.attachments[0]) )}
-                //LikesPriority = GetNormalizedUserPosts(news)
-            };
-
+            var user = Service.GetUserById(id);
+            return user.FirstName + " " + user.SecondName;
         }
 
-        private static int CountShare(VkApi.Attachments attachments)
+
+
+        public  static int CountShare(List<VkApi.Attachments> attachments)
         {
             int countShare = 0;
-            if (attachments.link.url != null)
+            foreach (var attach in attachments)
             {
-                var json = GetJson(attachments.link.url);
-                if (json != null)
+                if (attach.link.url != null)
                 {
-                    var jss = new JavaScriptSerializer();
-                    var obj = JObject.Parse(json);
-                    var tm = jss.Deserialize<Share>(obj.ToString());
-                    countShare = tm.share_count;
+                    var json = GetJson(attach.link.url);
+                    if (json != null)
+                    {
+                        var jss = new JavaScriptSerializer();
+                        var obj = JObject.Parse(json);
+                        var tm = jss.Deserialize<Share>(obj.ToString());
+                        countShare += tm.share_count;
+                    }
                 }
             }
             return countShare;
@@ -98,6 +93,7 @@ namespace AppServer
             StreamReader str = new StreamReader(resp.GetResponseStream());
             return RemoveRoot(str.ReadToEnd());
         }
+  
 
 
     }

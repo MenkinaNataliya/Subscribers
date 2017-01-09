@@ -26,28 +26,10 @@ namespace VkApi
             {
                 
                 var post = jss.Deserialize<VkNews>(dop.ToString());
+               // if()
                 collection.Add(post);
             }
             return collection;
-        }
-
-
-        public static string ParseIds(string json)
-        {
-            var id = new List<long>();
-            if (json != null)
-            {
-                var obj = JObject.Parse(json);
-                var token = obj["items"];
-                var listUser = token.ToList();
-
-                foreach (var user in listUser)
-                    id.Add((long)user);
-            }
-            string ids = "";
-            foreach (var i in id)
-                ids += i + ",";
-            return ids;
         }
 
         private static List<VkUser> DeserializeVkUser(string json)
@@ -80,6 +62,5 @@ namespace VkApi
             return users;
         }
 
-       
     }
 }

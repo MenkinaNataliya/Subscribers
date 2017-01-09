@@ -15,8 +15,16 @@ namespace WebApplication.Models
         public int reposts { get; set; }
         public int shares { get; set; }
         public string text { get; set; }
-        public string photo { get; set; }
+        public List<Attachments> attachments { get; set; }
 
        
+    }
+
+    public struct Attachments
+    {
+        public string type;
+        public string photo;
+        public string link;
+        public string text;
     }
 }

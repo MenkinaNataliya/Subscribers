@@ -6,7 +6,7 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace Server
+namespace AppServer
 {
     class Program
     {
@@ -27,26 +27,9 @@ namespace Server
             Db.Service.StartDB();
             var vkUsr = VkApi.Service.ParseUsers("csu_iit");
 
-            var dbUsr = vkUsr.ConvertAll(new Converter<VkApi.VkUser, Db.Member>(VkUserToDbUser));
+            var dbUsr = vkUsr.ConvertAll(new Converter<VkApi.VkUser, Db.Member>(Translate.VkUserToDbUser));
             foreach (var usr in dbUsr)
                 Db.Service.FillingDatabase(usr);
         }
-
-        public static Db.Member VkUserToDbUser(VkApi.VkUser user)
-        {
-            return new Db.Member
-            {
-                Uid = user.id,
-                FirstName = user.first_name,
-                Deactivated = user.deactivated,
-                SecondName = user.last_name,
-                Photo = user.photo_200_orig,
-                Friends = (user.Friends == null) ? null : user.Friends.ConvertAll(new Converter<VkApi.VkUser, Db.Member>(VkUserToDbUser))
-                //FlagIitGroup = (user.Friends == null) ? false : true
-
-            };
-        }
-
-       
     }
 }

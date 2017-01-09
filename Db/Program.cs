@@ -10,16 +10,7 @@ namespace Db
     {
         static void Main(string[] args)
         {
-            using (var db = new DbModel())
-            {
-                db.Members.Add(new Member
-                {
-                    Uid = 98,
-                    SecondName = "123",
-                    FirstName = "455"
-                });
-                db.SaveChanges();
-            }
+           
         }
     }
 }

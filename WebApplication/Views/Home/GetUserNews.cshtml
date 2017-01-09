@@ -16,7 +16,7 @@
 
     <script src="//netdna.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
 </head>
-<body style="margin: 20px;background: dimgrey">
+<body style="margin: 20px;background: #edeef0">
 
     <style>
         .row {
@@ -26,20 +26,31 @@
 
     <div class="row placeholders">
         <div class="col-md-10">
+            <h1 style="color: #2a5885; text-align: center">@ViewBag.Message</h1>
 
             @foreach (var post in Model)
             {
-                <div class="col-xs-6 col-sm-6 col-md-6 placeholder" style="overflow: hidden; padding: 5px">
-                    <div style="background: peachpuff; border-radius: 15px; padding: 5px;">
-                        <img class="img-responsive" alt="200x200" src=@post.photo>
-
-                        <br>
-                        @post.text
+                <div class="col-xs-4 col-sm-4 col-md-6 placeholder" style="overflow: hidden; padding: 5px">
+                    <div style="background: white; border-radius: 2px; padding: 5px; box-shadow: 0 1px 0 0 #d7d8db, 0 0 0 1px #e3e4e8;">
+                        
+                        <h5>@post.text</h5>
+                        
                         <div class="row">
-                            <div class="col-md-3">Комментарии - @post.comments</div>
-                            <div class="col-md-3">Репосты - @post.reposts</div>
-                            <div class="col-md-3">Лайки - @post.likes</div>
-                            <div class="col-md-3">Шеры - @post.shares</div>
+                            <div class="col-md-8">
+                                <div class="row">
+                                    @foreach (var attach in @post.attachments)
+                                    {
+                                        <div class="col-md-4"><img class="img-responsive" alt="200x200" src=@attach.photo></div>
+                                        @attach.text
+                                    }
+                                </div>
+                            </div>
+                        <div class="col-md-4">
+                            <div>Комментарии - @post.comments</div>
+                            <div>Репосты - @post.reposts</div>
+                            <div>Лайки - @post.likes</div>
+                            <div>Шеры - @post.shares</div>
+                        </div>
                         </div>
                     </div>
 
@@ -47,7 +58,7 @@
             }
         </div>
         <div class="col-md-2">
-            <h1>Выберите сортировку</h1>
+            <h1 style="color: #2a5885; " >Выберите сортировку</h1>
 
             <h4>@Html.ActionLink("По лайкам", "GetUserNews", new { typeSort = "likes", userId = ViewBag.id })</h4>
             <h4>@Html.ActionLink("По репостам", "GetUserNews", new { typeSort = "reposts", userId = ViewBag.id })</h4>

@@ -22,7 +22,7 @@ namespace VkApi
     }
     public struct Photo
     {
-        public string photo_130;
+        public string photo_1280;
     }
 
     public struct Link
@@ -37,6 +37,14 @@ namespace VkApi
         public Link link; 
     }
 
+    public struct CopyHistory
+    {
+        public int id;
+        public string text;
+        public List<Attachments> attachments;
+
+    }
+
     public class VkNews
     {
         public int owner_id;
@@ -49,6 +57,7 @@ namespace VkApi
         public string text;
        // public VkNews copy_history;
         public List<Attachments> attachments;
+        public List<CopyHistory> copy_history;
 
 
     }

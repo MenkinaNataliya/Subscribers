@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
-VisualStudioVersion = 14.0.25123.0
+VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebApplication", "WebApplication\WebApplication.csproj", "{FA2D82F0-2E42-4804-93E0-F965F09479DC}"
 EndProject
@@ -10,6 +10,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Db", "Db\Db.csproj", "{BE3013D7-E13E-45A2-ACD7-E2DF96269A64}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VkApi", "VkApi\VkApi.csproj", "{E5B3B60B-9567-410B-BD48-B0ED4D230304}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AppServer.Tests", "AppServer.Tests\AppServer.Tests.csproj", "{84D96063-3331-4C6C-AB2B-29E743280C52}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +35,10 @@ Global
 		{E5B3B60B-9567-410B-BD48-B0ED4D230304}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E5B3B60B-9567-410B-BD48-B0ED4D230304}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E5B3B60B-9567-410B-BD48-B0ED4D230304}.Release|Any CPU.Build.0 = Release|Any CPU
+		{84D96063-3331-4C6C-AB2B-29E743280C52}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{84D96063-3331-4C6C-AB2B-29E743280C52}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{84D96063-3331-4C6C-AB2B-29E743280C52}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{84D96063-3331-4C6C-AB2B-29E743280C52}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

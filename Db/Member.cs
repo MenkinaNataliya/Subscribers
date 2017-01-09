@@ -29,13 +29,10 @@ namespace Db
         public string Deactivated { get; set; }
         public string Photo { get; set; }
         public List<Member> Friends { get; set; }
-       // public List<Group> Groups { get; set; }
 
-        //public bool FlagIitGroup { get; set; }
         public Member()
         {
             Friends = new List<Member>();
-           // Groups = new List<Group>();
         }
     }
 }

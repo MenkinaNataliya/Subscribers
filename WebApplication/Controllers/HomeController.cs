@@ -22,6 +22,8 @@ namespace WebApplication.Controllers
             
             var news = AppServer.Server.GetNews(userId)
                 .ConvertAll(new Converter<AppServer.News, Models.News>(ServerNewsToWebNews));
+            if (news.Count == 0) ViewBag.Message = "Пользователь не имеет записей на стене, либо закрыл доступ из вне";
+            else ViewBag.Message = "Записи со стены " + AppServer.Server.GetNameById(userId);
             ViewBag.news = news;
             ViewBag.id = userId;
             return View(Sorting(typeSort, news));
@@ -89,13 +91,23 @@ namespace WebApplication.Controllers
                 comments = news.comments.count,
                 reposts = news.reposts.count,
                 text = news.text,
-                photo = news.photo,
+                attachments = news.attachments.Count == 0 ? new List<Models.Attachments>() : news.attachments.ConvertAll(new Converter<Attachments, Models.Attachments>(AttachmentToModelAttachment)),
                 shares = news.share.share_count,
                 LikesPriority= news.LikesPriority,
                 CommentsPriority = news.CommentsPriority,
                 RepostsPriority = news.RepostsPriority
             };
 
+        }
+
+        private static Models.Attachments AttachmentToModelAttachment(Attachments attach)
+        {
+            return new Models.Attachments
+            {
+                link = attach.link,
+                photo = attach.photo,
+                text = attach.text
+            };
         }
     }
     

@@ -11,13 +11,18 @@ namespace Db
     {
         public static DbModel db = new DbModel();
 
+        public static Member GetUserById(int id)
+        {
+            using (DbModel db = new DbModel())
+                return db.Members.Find(id);
+        }
 
         public static int CountNumberFriends(long id)
         {
             using (DbModel db = new DbModel())
             {
                 var user = db.Members.Find(id);
-               return  user.Friends.Count();
+                return  user.Friends.Count();
             }
         }
         public static void CleanDB()
@@ -25,7 +30,6 @@ namespace Db
             using (DbModel db = new DbModel())
             {
                 db.Database.Delete();
-                
                 db.SaveChanges();
             }
                 
@@ -43,16 +47,13 @@ namespace Db
         {
             using (DbModel db = new DbModel())
             {
-                //var tmp = db.Groups.ToList();
                 if (user.Deactivated != "deleted")
                 {
-                    var friends = user.Friends;
-                    user.Friends = new List<Member>();
                     db.Members.Add(user);
                     db.SaveChanges();
                     Member dbMember = db.Members.Find(user.Uid);
 
-                    foreach (var fr in friends)
+                    foreach (var fr in user.Friends)
                     {
                         db.Members.Add(fr);
                         Member friend = db.Members.Find(fr.Uid);
@@ -61,7 +62,6 @@ namespace Db
                         db.SaveChanges();
 
                     }
-                    db.SaveChanges();
 
                     var group = db.Groups.Where(x => x.Name == "csu_iit").FirstOrDefault();
                     group.Subscribers.Add(dbMember);
@@ -79,6 +79,5 @@ namespace Db
                 return group.Subscribers.ToList();
             }
         }
-
     }
 }
