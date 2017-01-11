@@ -13,8 +13,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VkApi", "VkApi\VkApi.csproj
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AppServer.Tests", "AppServer.Tests\AppServer.Tests.csproj", "{84D96063-3331-4C6C-AB2B-29E743280C52}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Web.Tests", "Web.Tests\Web.Tests.csproj", "{21E3AE0F-D6D3-4210-B47F-33E6E42EBB3B}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -41,10 +39,6 @@ Global
 		{84D96063-3331-4C6C-AB2B-29E743280C52}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{84D96063-3331-4C6C-AB2B-29E743280C52}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{84D96063-3331-4C6C-AB2B-29E743280C52}.Release|Any CPU.Build.0 = Release|Any CPU
-		{21E3AE0F-D6D3-4210-B47F-33E6E42EBB3B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{21E3AE0F-D6D3-4210-B47F-33E6E42EBB3B}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{21E3AE0F-D6D3-4210-B47F-33E6E42EBB3B}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{21E3AE0F-D6D3-4210-B47F-33E6E42EBB3B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

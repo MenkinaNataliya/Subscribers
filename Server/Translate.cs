@@ -22,6 +22,7 @@ namespace AppServer
         }
         public static News VkNewsToServerNews(VkApi.VkNews news)
         {
+            var server = new Server();
             return new News
             {
                 likes = new Likes { count = news.likes.count },
@@ -29,7 +30,7 @@ namespace AppServer
                 reposts = new Reposts { count = news.reposts.count },
                 text =  news.text,
                // photo = (news.attachments == null) ? "" : news.attachments[0].photo.photo_130,
-                share = new Share { share_count = ((news.attachments == null) ? 0 : Server.CountShare(news.attachments)) },
+                share = new Share { share_count = ((news.attachments == null) ? 0 : server.CountShare(news.attachments)) },
                 attachments = (news.attachments == null) ?
                             CopyHistoryToAttachment(news.copy_history) : 
                             news.attachments.ConvertAll(new Converter<VkApi.Attachments, Attachments>(VkAttachmentToAttachment))
